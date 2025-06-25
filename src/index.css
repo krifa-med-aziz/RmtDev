@@ -656,7 +656,7 @@ body::-webkit-scrollbar {
   margin-left: auto;
 }
 
-.pagination__button--back .pagination__icon {
+.pagination__button--previous .pagination__icon {
   margin-right: 3px;
 }
 
