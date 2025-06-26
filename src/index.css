@@ -291,7 +291,6 @@ body::-webkit-scrollbar {
   transform: translateX(-50%);
   transform-origin: left;
   transition: all 0.2s;
-  /* pointer-events: none; */
   position: fixed;
   left: 50%;
   top: 82px;
