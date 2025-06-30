@@ -3,7 +3,10 @@ import type { JobItem, TJobItemContent } from "./types";
 import { BASE_API_URL } from "./constants";
 import { useQueries, useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-import { BookmarksContext } from "../contexts/BookmarksContextProvider";
+import { BookmarksContext } from "../contexts/BookmarksContext";
+import { ActiveIdContext } from "../contexts/ActiveIdContext";
+import { SearchTextContext } from "../contexts/SearchTextContext";
+import { JobItemsContext } from "../contexts/JobItemsContext";
 
 // -----------------------------------------------------
 export function useActiveId() {
@@ -104,7 +107,7 @@ export function useJobItem(id: number | null) {
   useEffect(() => {
     if (isError && error)
       toast.error("Something went wrong! please try again.");
-  });
+  }, [error, isError]);
   return { jobItem: data?.jobItem, isLoading } as const;
 }
 // -----------------------------------------------------
@@ -128,4 +131,46 @@ export function useBookmarksContext() {
       "BookmarkIcon must be used within a BookmarksContextProvider"
     );
   return context;
+}
+
+export function useActiveIdContext() {
+  const context = useContext(ActiveIdContext);
+  if (!context)
+    throw new Error(
+      "useActiveIdContext must be used within a ActiveIdContextProvider"
+    );
+  return context;
+}
+export function useSearchTextContext() {
+  const context = useContext(SearchTextContext);
+  if (!context)
+    throw new Error(
+      "useSearchTextContext must be used within a SearchTextContextProvider"
+    );
+  return context;
+}
+export function useJobItemsContext() {
+  const context = useContext(JobItemsContext);
+  if (!context)
+    throw new Error(
+      "useJobItemsContext must be used within a JobItemsContextProvider"
+    );
+  return context;
+}
+
+// -----------------------------------------------------
+export function useOnClickOutside(
+  refs: React.RefObject<HTMLElement>[],
+  handler: () => void
+) {
+  useEffect(() => {
+    const handleClick = (e: MouseEvent) => {
+      if (refs.every((ref) => !ref.current?.contains(e.target as Node)))
+        handler();
+    };
+    document.addEventListener("click", handleClick);
+    return () => {
+      document.removeEventListener("click", handleClick);
+    };
+  }, [refs, handler]);
 }
