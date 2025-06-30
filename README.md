@@ -1,54 +1,144 @@
-# React + TypeScript + Vite
+<div align="center">
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# RmtDev - Remote Job Board for Developers
 
-Currently, two official plugins are available:
+[![Last Commit](https://img.shields.io/github/last-commit/krifa-med-aziz/RmtDev?style=flat-square)](https://github.com/krifa-med-aziz/RmtDev)
+[![Languages](https://img.shields.io/github/languages/count/krifa-med-aziz/RmtDev?style=flat-square)](https://github.com/krifa-med-aziz/RmtDev)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+</div>
 
-## Expanding the ESLint configuration
+<div align="center">
+  <img src="https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB"/>
+  <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=vite&logoColor=white"/>
+  <img src="https://img.shields.io/badge/TailwindCSS-38B2AC?style=flat-square&logo=tailwindcss&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Radix_UI-000000?style=flat-square&logo=radix-ui&logoColor=white"/>
+</div>
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+
+## 📚 Table of Contents
+
+- [📖 Overview](#-overview)
+- [⚙️ Getting Started](#️-getting-started)
+- [🧩 Features](#-features)
+- [🧠 Custom Hooks](#-custom-hooks)
+- [🌐 Context API](#-context-api)
+- [📁 Folder Structure](#-folder-structure)
+- [🛠️ Available Scripts](#️-available-scripts)
+- [🧪 Testing](#-testing)
+
+
+---
+
+## 📖 Overview
+
+RmtDev allows users to:
+
+- 🔍 Search for remote jobs in real time  
+- 📌 Bookmark interesting listings  
+- 📄 View full job details including company info  
+- 🔃 Sort jobs by relevance or recency  
+- 📱 Use the app on any device thanks to a responsive layout  
+
+---
+
+## ⚙️ Getting Started
+
+### Prerequisites
+
+- Node.js ≥ 18
+- npm
+
+### Installation
+
+```bash
+git clone https://github.com/krifa-med-aziz/RmtDev.git
+cd RmtDev
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Run locally
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```bash
+npm run dev
 ```
+
+App will be available at: [http://localhost:5173](http://localhost:5173)
+
+---
+
+## 🧩 Features
+
+- 🔎 Debounced live search  
+- 📋 Sort jobs by relevance or newest first  
+- 📌 Bookmark jobs to localStorage  
+- 💬 Toast notifications and loading states  
+- 🧠 Modular architecture with custom hooks  
+- 📱 Fully responsive design  
+
+---
+
+## 🧠 Custom Hooks
+
+| Hook                  | Description                                      |
+|-----------------------|--------------------------------------------------|
+| `useJobItems()`       | Fetches and caches job list                     |
+| `useJobItem()`        | Fetches details for a specific job              |
+| `useDebounce()`       | Debounces the search input                      |
+| `useLocalStorage()`   | Handles persistent bookmarks                    |
+| `useOnClickOutside()` | Closes dropdown/popover when clicking outside  |
+
+
+---
+
+## 🌐 Context API
+
+| Context             | Description                        |
+|---------------------|------------------------------------|
+| `ActiveIdContext`    | Tracks currently selected job      |
+| `BookmarksContext`   | Manages bookmarked jobs            |
+| `SearchTextContext`  | Controls global search text        |
+| `JobItemsContext`    | Central state for job listings     |
+
+
+
+---
+
+## 📁 Folder Structure
+
+```
+src/
+├── components/         # UI components (JobList, Header, Sidebar, etc.)
+├── contexts/           # React context providers
+├── lib/
+│   ├── hooks.ts        # Custom hooks
+│   ├── types.ts        # TypeScript types
+│   └── utils.ts        # Utility functions
+├── pages/              # Main application pages
+└── main.tsx            # Entry point
+```
+
+---
+
+## 🛠️ Available Scripts
+
+| Script           | Description                     |
+|------------------|---------------------------------|
+| `npm run dev`     | Start development server        |
+| `npm run build`   | Build for production            |
+| `npm run preview` | Preview production build        |
+| `npm run lint`    | Run ESLint checks               |
+
+---
+
+## 🧪 Testing
+
+This project does not include tests yet. You can add testing using:
+
+- [`Vitest`](https://vitest.dev/)
+- [`Jest`](https://jestjs.io/)
+- [`React Testing Library`](https://testing-library.com/)
+
+
